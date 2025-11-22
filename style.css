@@ -48,7 +48,7 @@ body {
    Header / Navigation
 =========================== */
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   background: rgba(10, 10, 10, 0.9);
@@ -648,3 +648,33 @@ button:hover {
     display: none;
   }
 }
+/* ===========================
+   ONE-LINE MOBILE NAV
+=========================== */
+@media (max-width: 768px) {
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;        /* Smaller spacing */
+    flex-wrap: nowrap; /* Force 1 line */
+    overflow-x: auto;  /* Allow slide left/right */
+    padding: 10px 5px;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+  }
+
+  nav ul li {
+    margin: 0; /* Remove big margins */
+  }
+
+  nav ul li a {
+    font-size: 12px; /* Make text smaller so it fits */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+}
+
+
