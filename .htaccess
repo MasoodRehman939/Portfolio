@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Redirect non-www to www
+RewriteCond %{HTTP_HOST} ^masoodrehman\.site [NC]
+RewriteRule ^(.*)$ https://www.masoodrehman.site/$1 [L,R=301]
