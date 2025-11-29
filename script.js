@@ -155,30 +155,23 @@ if (resumeBtn) {
 /* ===========================
    Contact Form using EmailJS
 =========================== */
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
-
-if (contactForm) {
-  emailjs.init("eeBvi5ncPqGr6y9mk"); // <-- replace with your Public Key
-
-  contactForm.addEventListener('submit', function(e) {
+document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const SERVICE_ID = 'service_ukfo6q9';  // <-- replace with your Service ID
-    const TEMPLATE_ID = 'template_prf8tih'; // <-- replace with your Template ID
-
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+    emailjs.send("service_ukfo6q9", "template_prf8tih", {
+        user_name: this.user_name.value,
+        user_email: this.user_email.value,
+        message: this.message.value
+    })
     .then(() => {
-      formMessage.textContent = "✅ Message sent successfully!";
-      formMessage.style.color = "lightgreen";
-      contactForm.reset();
-    }, (error) => {
-      formMessage.textContent = "❌ Error sending message. Try again.";
-      formMessage.style.color = "red";
-      console.error("EmailJS error:", error);
+        document.getElementById("formMessage").innerText = "✅ Message sent successfully!";
+        this.reset();
+    })
+    .catch((error) => {
+        document.getElementById("formMessage").innerText = "❌ There was an error sending your message.";
+        console.error(error);
     });
-  });
-}
+});
 
 /* ===========================
    Testimonials Slider (Auto + Manual + Infinite Loop)
@@ -248,3 +241,4 @@ if (track && cards.length > 0 && prevBtn && nextBtn) {
   // Start auto sliding
   startAutoSlide();
 }
+
